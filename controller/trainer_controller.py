@@ -12,6 +12,9 @@ class TrainerController:
             return -1
         if TrainerController.get_index(json['name']) != -1:
             return -2
+        for pokemon in json['pokemons']:
+            if not PokemonController.pokemon_exist(pokemon['name']):
+                return -3
         TrainerController.trainers.append(json)
         return 1
 
@@ -19,6 +22,9 @@ class TrainerController:
     def updateTrainer(json: dict) -> int:
         if not TrainerController.is_trainer(json):
             return -1
+        for pokemon in json['pokemons']:
+            if not PokemonController.pokemon_exist(pokemon['name']):
+                return -3
         index = TrainerController.get_index(json['name'])
         if index == -1:
             return -2
@@ -46,12 +52,15 @@ class TrainerController:
         return -1
 
     @staticmethod
-    def pokemon_exist(pokemon_name) -> bool:
-        return False if PokemonController.get_index(pokemon_name) == -1 else True
-
-    @staticmethod
     def is_trainer(json: dict) -> bool:
         for train_att in TrainerController.trainer_att:
             if train_att not in json:
                 return False
         return True
+
+    @staticmethod
+    def deletePokemon(pokemon_name):
+        for trainer in TrainerController.trainers:
+            for index, pokemon in enumerate(trainer['pokemons']):
+                if pokemon['name'] == pokemon_name:
+                    del trainer['pokemons'][index]

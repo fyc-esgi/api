@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 
 from controller.pokemon_controller import PokemonController
+from controller.trainer_controller import TrainerController
 
 pokemon_api = Blueprint('pokemon_api', __name__)
 
@@ -37,6 +38,7 @@ def update_pokemon():
 def delete_pokemon():
     action = PokemonController.deletePokemon(request.get_json()['name'])
     if action == 1:
+        TrainerController.deletePokemon(request.get_json()['name'])
         return jsonify({'message': 'Successfully deleted'}), 200
     elif action == -1:
         return jsonify({'message': "Doesn't exist."}), 400

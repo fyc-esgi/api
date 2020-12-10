@@ -48,3 +48,7 @@ class PokemonController:
             if pok_att not in json:
                 return False
         return True
+
+    @staticmethod
+    def pokemon_exist(pokemon_name) -> bool:
+        return False if PokemonController.get_index(pokemon_name) == -1 else True

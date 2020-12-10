@@ -14,6 +14,8 @@ def add_trainer():
         return jsonify({'message': "Wrong attributes, needs : 'name', 'pokemons', 'title'."}), 400
     elif action == -2:
         return jsonify({'message': 'Already exists'}), 400
+    elif action == -3:
+        return jsonify({'message': "One of trainer's pokemon do not exist."}), 400
     else:
         return jsonify({'message': 'Bad request'}), 400
 
@@ -26,7 +28,9 @@ def update_trainer():
     elif action == -1:
         return jsonify({'message': "Wrong attributes, needs : 'name', 'pokemons', 'title'."}), 400
     elif action == -2:
-        return jsonify({'message': "Doesn't exist."}), 404
+        return jsonify({'message': "Trainer doesn't exist."}), 404
+    elif action == -3:
+        return jsonify({'message': "One of trainer's pokemon do not exist."}), 400
     else:
         return jsonify({'message': 'Bad request'}), 400
 
