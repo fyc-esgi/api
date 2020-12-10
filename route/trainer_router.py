@@ -35,9 +35,9 @@ def update_trainer():
         return jsonify({'message': 'Bad request'}), 400
 
 
-@trainer_api.route('/trainer', methods=['DELETE'])
-def delete_trainer():
-    action = TrainerController.deleteTrainer(request.get_json()['name'])
+@trainer_api.route('/trainer/<name>', methods=['DELETE'])
+def delete_trainer(name):
+    action = TrainerController.deleteTrainer(name)
     if action == 1:
         return jsonify({'message': 'Successfully deleted'}), 200
     elif action == -1:
@@ -48,4 +48,4 @@ def delete_trainer():
 
 @trainer_api.route('/trainer', methods=['GET'])
 def get_all_trainer():
-    return jsonify({'data': TrainerController.getAll()}), 200
+    return jsonify(TrainerController.getAll()), 200

@@ -34,11 +34,11 @@ def update_pokemon():
         return jsonify({'message': 'Bad request'}), 400
 
 
-@pokemon_api.route('/pokemon', methods=['DELETE'])
-def delete_pokemon():
-    action = PokemonController.deletePokemon(request.get_json()['name'])
+@pokemon_api.route('/pokemon/<name>', methods=['DELETE'])
+def delete_pokemon(name):
+    action = PokemonController.deletePokemon(name)
     if action == 1:
-        TrainerController.deletePokemon(request.get_json()['name'])
+        TrainerController.deletePokemon(name)
         return jsonify({'message': 'Successfully deleted'}), 200
     elif action == -1:
         return jsonify({'message': "Doesn't exist."}), 400
@@ -48,4 +48,4 @@ def delete_pokemon():
 
 @pokemon_api.route('/pokemon', methods=['GET'])
 def get_all_pokemon():
-    return jsonify({'data': PokemonController.getAll()}), 200
+    return jsonify(PokemonController.getAll()), 200
