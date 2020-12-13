@@ -1,7 +1,11 @@
 # Lancer le conteneur
 `docker-compose up`
 
-# Compte par défaut grafan
+# Lancer en local
+`$ pip install -r api/requirements.txt`
+`$ python api/main.py`
+
+# Compte par defaut grafana & Influxdb
 
 ID : `admin`
 
@@ -10,6 +14,8 @@ PASSWORD :`admin`
 # URL 
 ## Grafana
 `http://localhost:3000/`
+##Influxdb
+`http://localhost:8086/query`
 ##Prometheus
 `http://localhost:9090`
 ##API
