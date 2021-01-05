@@ -12,7 +12,5 @@ scrape_configs:
     scrape_timeout: 3s
     metrics_path: /metrics
     scheme: http
-    tls_config:
-      insecure_skip_verify: true
     static_configs:
          - targets: ['api:5050']

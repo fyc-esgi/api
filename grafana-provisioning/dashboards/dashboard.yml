@@ -1,6 +1,6 @@
 apiVersion: 1
 providers:
-- name: InfluxDB
+- name: Dashboard
   folder: ''
   type: file
   disableDeletion: false
