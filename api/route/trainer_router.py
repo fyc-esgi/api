@@ -7,7 +7,7 @@ trainer_api = Blueprint('trainer_api', __name__)
 
 @trainer_api.route('/trainer', methods=['POST'])
 def add_trainer():
-    action = TrainerController.addTrainer(request.get_json())
+    action = TrainerController.add_trainer(request.get_json())
     if action == 1:
         return jsonify({'message': 'Successfully created'}), 201
     elif action == -1:
@@ -22,7 +22,7 @@ def add_trainer():
 
 @trainer_api.route('/trainer', methods=['PUT'])
 def update_trainer():
-    action = TrainerController.updateTrainer(request.get_json())
+    action = TrainerController.update_trainer(request.get_json())
     if action == 1:
         return jsonify({'message': 'Successfully updated'}), 200
     elif action == -1:
@@ -37,7 +37,7 @@ def update_trainer():
 
 @trainer_api.route('/trainer/<name>', methods=['DELETE'])
 def delete_trainer(name):
-    action = TrainerController.deleteTrainer(name)
+    action = TrainerController.delete_trainer(name)
     if action == 1:
         return jsonify({'message': 'Successfully deleted'}), 200
     elif action == -1:
@@ -48,4 +48,4 @@ def delete_trainer(name):
 
 @trainer_api.route('/trainer', methods=['GET'])
 def get_all_trainer():
-    return jsonify(TrainerController.getAll()), 200
+    return jsonify(TrainerController.get_all()), 200

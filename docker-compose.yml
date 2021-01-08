@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  api:
+    image: python:3.8.5-alpine3.12
+    container_name: api
+    working_dir: /var/lib/api
+    networks:
+      - backend
+    ports:
+    - "5050:5050"
+    volumes:
+      - ../api/:/var/lib/api
+    command: >
+      sh -c "pip install -r api/requirements.txt
+      && python3 api/main.py"
+
+networks:
+  backend:
+    driver: "bridge"

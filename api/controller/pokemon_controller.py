@@ -4,7 +4,7 @@ class PokemonController:
     pok_attributes = ['name', 'element_type', 'hp', 'attack', 'defense', 'speed']
 
     @staticmethod
-    def addPokemon(json: dict) -> int:
+    def add_pokemon(json: dict) -> int:
         if not PokemonController.is_pokemon(json):
             return -1
         if PokemonController.get_index(json['name']) != -1:
@@ -13,7 +13,7 @@ class PokemonController:
         return 1
 
     @staticmethod
-    def updatePokemon(json: dict) -> int:
+    def update_pokemon(json: dict) -> int:
         if not PokemonController.is_pokemon(json):
             return -1
         index = PokemonController.get_index(json['name'])
@@ -23,7 +23,7 @@ class PokemonController:
         return 1
 
     @staticmethod
-    def deletePokemon(pokemon_name: str) -> int:
+    def delete_pokemon(pokemon_name: str) -> int:
         index = PokemonController.get_index(pokemon_name)
 
         if index == -1:
@@ -32,7 +32,7 @@ class PokemonController:
         return 1
 
     @staticmethod
-    def getAll() -> list:
+    def get_all() -> list:
         return PokemonController.pokemons
 
     @staticmethod
