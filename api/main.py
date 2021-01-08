@@ -2,7 +2,6 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 from route.pokemon_router import pokemon_api
 from route.trainer_router import trainer_api
-from prometheus_flask_exporter import PrometheusMetrics
 
 
 app = Flask(__name__)
